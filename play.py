@@ -82,6 +82,9 @@ def play_room():
             chamber()
         elif choice == "west":
             entrance()
+        else:
+            fprint(f"Sorry, I didn't understand that. Please try again.")
+
     
 def arcade():
     fprint("""You have entered the arcade room.""",1)
