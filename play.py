@@ -108,13 +108,15 @@ def arcade():
 
 def gallery():
     fprint("""You have entered the gallery.""",1)
-    fprint("""You see a bunch of paintings on the wall. You can go west, or east.""")
+    fprint("""You see a bunch of paintings on the wall. You can go west, east, or south.""")
     while True:
         choice = input("\n>")
         if choice == "west":
             arena()
         elif choice == "east":
             throne_room()
+        elif choice == "south":
+            entrance()
         elif choice == "quit":
             quit_game()
 
