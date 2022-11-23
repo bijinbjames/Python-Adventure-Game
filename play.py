@@ -29,22 +29,25 @@ def sprint(str, delay =0.1):
 def print_welcome():
     fprint("""You took your puppy to the park, you let the puppy lose to run around the park and play. You saw you old friend in
      the park while you two were talking you see you puppy run away from the park, you saw the puppy running into a misterious palace
-     you awent with her you are now standing in front of the doon in the palace Do you want to go in and find the puppy?""")
+     you awent with her you are now standing in front of the door in the palace Do you want to go in and find the puppy?
+     *) Type 'yes' to go enter the palace.
+     *) Type 'no' to stay there.
+     *) Type 'quit' to exit the game.""",)
     while True:
         choice = input("\n>")
-        if choice == "north":
+        if choice == "yes":
             entrance()
-        elif choice == "south":
-            play_room()
-        elif choice == "east":
-            arcade()
-        elif choice == "west":
-            gallery()
+        elif choice == "no":
+            fprint("You stay there wondering where the puppy went :(")
+        elif choice == "quit":
+            fprint("Thank you for playing",0.5)
+            quit()
         else:
-            fprint("That is not a valid direction.")
+            fprint("Don't know what you mean.")
 
 def entrance():
-    fprint("You are in the great hall of the mystery palace. All you see is a crystal chandlier above you and a dirty backpack on the floor. You can go north, south, east, or west.")
+    fprint("""You are in the great hall of the mystery palace. All you see is a crystal chandlier above you and a dirty backpack on the floor. 
+    You can go north, south, east, or west.""")
     print("Would you like to pick it up or ignore?")
     while True:
         choice = input("\n>")
@@ -82,3 +85,4 @@ def undercroft():
 
 def chamber():
     pass
+print_welcome()
