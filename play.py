@@ -40,49 +40,162 @@ def print_welcome():
         elif choice == "no":
             fprint("You stay there wondering where the puppy went :(")
         elif choice == "quit":
-            fprint("Thank you for playing",0.5)
-            quit()
+            quit_game()
         else:
             fprint("Don't know what you mean.")
 
 def entrance():
     fprint("""You are in the great hall of the mystery palace. All you see is a crystal chandlier above you and a dirty backpack on the floor. 
-    You can go north, south, east, or west.""")
-    print("Would you like to pick it up or ignore?")
+    You can go north, south, east, or west.
+    Where would you like to go?""")
+    
     while True:
         choice = input("\n>")
-        if choice == "pick it up":
-            fprint("You picked up the backpack.")
-            fprint("You now have a backpack.")
-            backpack = True
-        else:
-            break
+        if choice =="north":
+            gallery()
+        elif choice == "south":
+            fprint("""You came back outside of the palace, Would you like to go back in the palace or exit the game?
+            *) Type 'yes' to go back in the palace.
+            *) Type 'no' to exit the game.""")
+            while True:
+                choice = input("\n> ")
+                if choice == "yes":
+                    entrance()
+                elif choice == "no":
+                    quit_game()
+                else:
+                    fprint("Don't know what you mean.")
+        elif choice == "east":
+            play_room()
+        elif choice == "west":
+            arcade()
+        elif choice == "quit":
+            quit_game()
 
 
 def play_room():
-    pass
+    fprint("""You have entered the play room.""",1)
+    fprint("""This is the royal game room. You see a pool table at the center of the room with a crumpled paper ball with something written over it. You can go east, or west.""")
+    while True:
+        choice = input("\n>")
+        if choice == "east":
+            chamber()
+        elif choice == "west":
+            entrance()
     
 def arcade():
-    pass
+    fprint("""You have entered the arcade room.""",1)
+    fprint("""You see a bunch of old arcade games. You can go north, or south.""")
+    while True:
+        choice = input("\n>")
+        if choice == "north":
+            scullery()
+        elif choice == "south":
+            fprint("You see a passage leading to a dungeon, do you want to go in?")
+            while True:
+                choice = input("\n>")
+                if choice == "yes":
+                    dungeon()
+                elif choice == "no":
+                    arcade()
+                else:
+                    fprint("Don't know what you mean.")
+        elif choice == "quit":
+            quit_game()
 
 def gallery():
-    pass
+    fprint("""You have entered the gallery.""",1)
+    fprint("""You see a bunch of paintings on the wall. You can go west, or east.""")
+    while True:
+        choice = input("\n>")
+        if choice == "west":
+            arena()
+        elif choice == "east":
+            throne_room()
+        elif choice == "quit":
+            quit_game()
 
 def scullery():
-    pass
+    fprint("""You have entered the scullery.""",1)
+    fprint("""You see a bunch of old food. It's a mess here in the scullery!
+              You see dirty broken dishes and rusty knife lying around. 
+              You can go south.""")
+    while True:
+        choice = input("\n>")
+        if choice == "south":
+            arcade()
+        elif choice == "quit":
+            quit_game()
 
 def throne_room():
-    pass
+    fprint("""You have entered the throne room.""",1)
+    fprint("""You are in the throne room. You see the red velvet throne with a Golden key on it..
+            You can go west.""")
+    while True:
+        choice = input("\n>")
+        if choice == "west":
+            gallery()
+        elif choice == "quit":
+            quit_game()
 
 def dungeon():
-    pass
+    fprint("""You have entered the dungeon.""",1)
+    fprint("""This is the prison cell. It's pitch dark in here. Turn on the flashlight. 
+              You can go south, or north""")
+    while True:
+        choice = input("\n>")
+        if choice == "south":
+            undercroft()
+        elif choice == "north":
+            arcade()
+        elif choice == "quit":
+            quit_game()
 
 def arena():
-    pass
+    print_slow("""You have entered the arena""",0.1)
+    fprint("You have entered the Arena. You found a flashlight, would you like to pick it up? You can go east")
+    while True:
+        choice = input("\n>")
+        if choice == "east":
+            gallery()
+        
+        elif choice == "quit":
+            quit_game()
+        else:
+            fprint("I don't understand that. Try again.")
+
 
 def undercroft():
-    pass
+    fprint("You have entered the undercroft.")
+    fprint("""The Undercroft is locked. Unlock it with the golden key.
+              You see your puppy. Your puppy sees you. 
+              It run towards you wagging it's tiny tail.""")
+    print_slow("YOU WON THE GAME",0.1)
+    print("Press any key to exit the game")
+    while True:
+        choice = input("\n>")
+        quit_game()
 
 def chamber():
-    pass
+    fprint("You entered the chamber")
+    fprint("""You are in the king and queen’s restroom. 
+              You see a large canopy bed with ivory curtains.
+              You look around the room only to find a mini key. 
+              would you like to pick it?
+              You can go west""")
+    while True:
+        choice = input("\n>")
+        if choice == "west":
+            play_room()
+        
+        elif choice == "quit":
+            quit_game()
+        else:
+            fprint("I don't understand that. Try again.")
+
+def quit_game():
+    fprint("Thank you for playing",0.5)
+    quit()
+    
+
 print_welcome()
