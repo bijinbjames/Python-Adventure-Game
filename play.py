@@ -26,7 +26,13 @@ def sprint(str, delay =0.1):
     start the game. It is also where the player will be able to 
     access all other rooms in the game."""
 
+
+knife = False
+key = False
+
+
 def print_welcome():
+    
     fprint("""You took your puppy to the park, you let the puppy lose to run around the park and play. You saw you old friend in
      the park while you two were talking you see you puppy run away from the park, you saw the puppy running into a misterious palace
      you awent with her you are now standing in front of the door in the palace Do you want to go in and find the puppy?
@@ -88,7 +94,7 @@ def play_room():
     
 def arcade():
     fprint("""You have entered the arcade room.""",1)
-    fprint("""You see a bunch of old arcade games. You can go north, or south.""")
+    fprint("""You see a bunch of old arcade games. You can go north, south, or east.""")
     while True:
         choice = input("\n>")
         if choice == "north":
@@ -103,12 +109,84 @@ def arcade():
                     arcade()
                 else:
                     fprint("Don't know what you mean.")
+        if choice == "east":
+            entrance()
         elif choice == "quit":
             quit_game()
 
 def gallery():
+    global knife
+    global key
+ 
     fprint("""You have entered the gallery.""",1)
-    fprint("""You see a bunch of paintings on the wall. You can go west, east, or south.""")
+    fprint("""You see a bunch of paintings on the wall. You can go west, east, or south.""",1)
+    fprint("""You see a witch meditating in the center of the room, She has a golden key.""",1)
+    fprint("""KILL THE WITCH, to get access to the golden key.""",1)
+    fprint("""Press 'F' to attack Dorothi witch""",1)
+    dorothy_attack = ([True, False])
+   
+    while True:
+        choice = input("\n>")
+        if choice == "west":
+            arena()
+        elif choice == "east":
+            throne_room()
+        elif choice == "south":
+            entrance()
+        elif choice == "quit":
+            quit_game()
+        elif choice == "F":
+            fprint("You attacked Dorothy!")
+            if knife == True:
+                fprint("You killed Dorothy witch!")
+                fprint("Press 'k' to pick up the golden key")
+                while True:
+                    choice = input("\n>")
+                    if choice == "k":
+                        fprint("You picked up the golden key")
+                        fprint("You can now go to the throne room to get the treasure!")
+                        key = True
+                        gallery_no_witch()
+                        
+                    elif choice == "quit":
+                        quit_game()
+                    else:
+                        fprint("Don't know what you mean.")
+            elif knife == False:
+                fprint("You missed Dorothy witch!")
+                fprint("Dorothy witch killed you!")
+                fprint("You died!")
+                fprint("GAME OVER!")
+                fprint("Press 'r' to restart the game")
+                while True:
+                    choice = input("\n>")
+                    if choice == "r":
+                        reset_console()
+                        print_welcome()
+                    elif choice == "quit":
+                        quit_game()
+                    else:
+                        fprint("Don't know what you mean.")
+            dorothy_attack = True
+            if dorothy_attack == True:
+                fprint("You killed Dorothy!")
+                fprint("You got the golden key!")
+                fprint("You can now go to the throne room!")
+                gallery()
+            choice = input("\n>")
+            if choice == "yes":
+                entrance()
+            elif choice == "no":
+                quit_game()
+            
+def gallery_no_witch():
+    global knife
+    global key
+ 
+    fprint("""The gallery is now free 
+            You are looking throught the paintings
+            You can go west east or south""",1)
+   
     while True:
         choice = input("\n>")
         if choice == "west":
@@ -120,15 +198,27 @@ def gallery():
         elif choice == "quit":
             quit_game()
 
+        
+
 def scullery():
+    global knife
     fprint("""You have entered the scullery.""",1)
     fprint("""You see a bunch of old food. It's a mess here in the scullery!
               You see dirty broken dishes and rusty knife lying around. 
               You can go south.""")
+    fprint("""You see knife laying on the floor.
+            Press 'k' to pick it up""",1)
     while True:
         choice = input("\n>")
         if choice == "south":
             arcade()
+        elif choice == "k":
+            fprint("You picked up the knife")
+            knife = True
+            fprint("You can now go to the gallery to kill dorothy witch!")
+            
+        
+        
         elif choice == "quit":
             quit_game()
 
@@ -204,3 +294,5 @@ def quit_game():
     
 
 print_welcome()
+
+
