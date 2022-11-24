@@ -271,15 +271,40 @@ def arena():
 
 
 def undercroft():
-    fprint("You have entered the undercroft.")
+    global key
     fprint("""The Undercroft is locked. Unlock it with the golden key.
-              You see your puppy. Your puppy sees you. 
-              It run towards you wagging it's tiny tail.""")
+              You can go north.""")
+    if key == False:
+        fprint("You do not have the key to unlock the door")
+        while True:
+            choice = input("\n>")
+            if choice == "north":
+                dungeon()
+    elif key == True:
+        fprint("Use the golden key to unlock the undercroft")
+        fprint("Press 'u' to unlock the undercroft")
+        while True:
+            choice = input("\n>")
+            if choice == "u":
+                fprint("You unlocked the undercroft")
+                undercroft_unlocked()
+            elif choice == "quit":
+                quit_game()
+            else:
+                fprint("Don't know what you mean.")
+       
+        
+def undercroft_unlocked():
+    global key
+    fprint("You have unlocked the Undercroft and you see your puppy")
     print_slow("YOU WON THE GAME",0.1)
     print("Press any key to exit the game")
     while True:
         choice = input("\n>")
         quit_game()
+                
+
+
 
 def chamber():
     fprint("You entered the chamber")
