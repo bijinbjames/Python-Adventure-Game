@@ -81,21 +81,23 @@ def entrance():
 
 def play_room():
     fprint("""You have entered the play room.""",1)
-    fprint("""This is the royal game room. You see a pool table at the center of the room with a crumpled paper ball with something written over it. 
+    print_slow("""
+    This is the royal game room. 
+    You see a pool table at the center of the room with a crumpled paper ball with something written over it. 
     You can go east, or west.
-    Do you want read the ceumpled paper ball?
-    *) yes
-    *) No""",1)
+    Press 'l' to read the crumpled paper ball?
+    """,0.03)
     while True:
         choice = input("\n>")
         if choice == "east":
             chamber()
         elif choice == "west":
             entrance()
-        elif choice == "yes":
+        elif choice == "l":
             print("The paper ball says:") 
-            print_slow("""'To be the powerful witch of the world, Dorothy needs to drink a puppy’s blood.
-             Lock puppy in the magic bound undercroft until sunset' """)
+            print_slow("""
+            'To be the powerful witch of the world, Dorothy needs to drink a puppy’s blood.
+            Lock puppy in the magic bound undercroft until sunset' """)
         else:
             fprint(f"Sorry, I didn't understand that. Please try again.")
 
