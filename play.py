@@ -29,6 +29,7 @@ def sprint(str, delay =0.1):
 
 knife = False
 key = False
+dorothy_killed = False
 
 
 def print_welcome():
@@ -57,8 +58,10 @@ def entrance():
     
     while True:
         choice = input("\n>")
-        if choice =="north":
+        if choice =="north" and dorothy_killed == False:
             gallery()
+        elif choice =="north" and dorothy_killed == True:
+            gallery_no_witch()
         elif choice == "south":
             fprint("""You came back outside of the palace, Would you like to go back in the palace or exit the game?
             *) Type 'yes' to go back in the palace.
@@ -127,6 +130,7 @@ def arcade():
 def gallery():
     global knife
     global key
+    global dorothy_killed
  
     fprint("""You have entered the gallery.""",1)
     fprint("""You see a bunch of paintings on the wall. You can go west, east, or south.""",1)
@@ -156,6 +160,7 @@ def gallery():
                         fprint("You picked up the golden key")
                         fprint("You can now go to the throne room to get the treasure!")
                         key = True
+                        dorothy_killed = True
                         gallery_no_witch()
                         
                     elif choice == "quit":
@@ -177,17 +182,7 @@ def gallery():
                         quit_game()
                     else:
                         fprint("Don't know what you mean.")
-            dorothy_attack = True
-            if dorothy_attack == True:
-                fprint("You killed Dorothy!")
-                fprint("You got the golden key!")
-                fprint("You can now go to the throne room!")
-                gallery()
-            choice = input("\n>")
-            if choice == "yes":
-                entrance()
-            elif choice == "no":
-                quit_game()
+            
             
 def gallery_no_witch():
     global knife
@@ -238,8 +233,10 @@ def throne_room():
             You can go west.""")
     while True:
         choice = input("\n>")
-        if choice == "west":
+        if choice == "west" and dorothy_killed == False:
             gallery()
+        elif choice =="west" and dorothy_killed == True:
+            gallery_no_witch()
         elif choice == "quit":
             quit_game()
 
@@ -261,8 +258,10 @@ def arena():
     fprint("You have entered the Arena. You found a flashlight, would you like to pick it up? You can go east")
     while True:
         choice = input("\n>")
-        if choice == "east":
+        if choice == "east" and dorothy_killed == False:
             gallery()
+        elif choice =="east" and dorothy_killed == True:
+            gallery_no_witch()
         
         elif choice == "quit":
             quit_game()
