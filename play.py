@@ -54,7 +54,7 @@ def print_welcome():
                 You are standing in front of the door. 
     *) Type 'yes' to enter the palace.
     *) Type 'no' to stay there.
-    *) Type 'quit' to exit the game. """)
+    *) Type 'quit' on any part of the game to exit. """)
     while True:
         choice = input("\n>")
         if choice == "yes":
@@ -106,21 +106,20 @@ def entrance():
 
 
 def play_room():
-    fprint("""You have entered the play room.""",1)
-    print_slow("""
-    This is the royal game room. 
-    You see a pool table at the center of the room with a crumpled paper ball with something written over it. 
-    You can go east, or west.
-    Press 'l' to read the crumpled paper ball?
-    """,0.03)
+    print_slow("""You have entered the play room.""")
+    print_slow("""This is the royal game room.""") 
+    print_slow("""You see a pool table at the center of the room.""")
+    print_slow("""There is a crumpled paper ball on the table with something written over it.""")
+    print_slow("""Press 'e' to pick up and read the crumpled paper ball?""") 
+    print_slow("""You can go 'east', or 'west'.""")
     while True:
         choice = input("\n>")
         if choice == "east":
             chamber()
         elif choice == "west":
             entrance()
-        elif choice == "l":
-            print("The paper ball says:") 
+        elif choice == "e":
+            print_slow("The paper ball says:") 
             print_slow("""
             'To be the powerful witch of the world, Dorothy needs to drink a puppy’s blood.
             Lock puppy in the magic bound undercroft until sunset' """)
@@ -129,14 +128,17 @@ def play_room():
 
     
 def arcade():
-    fprint("""You have entered the arcade room.""",1)
-    fprint("""You see a bunch of old arcade games. You can go north, south, or east.""")
+    print_slow("""You have entered the arcade room.""")
+    print_slow("""You see a bunch of arcade games.""")
+    print_slow("""You can go 'north', 'south', or 'east'.""")
     while True:
         choice = input("\n>")
         if choice == "north":
             scullery()
         elif choice == "south":
-            fprint("You see a passage leading to a dungeon, do you want to go in?")
+            print_slow("""You see a passage leading to a dungeon, do you want to go in?
+            *) Type 'yes' to go in.
+            *) Type 'no' to go back.""")
             while True:
                 choice = input("\n>")
                 if choice == "yes":
@@ -157,11 +159,12 @@ def gallery():
     global key
     global dorothy_killed
  
-    fprint("""You have entered the gallery.""",1)
-    fprint("""You see a bunch of paintings on the wall. You can go west, east, or south.""",1)
-    fprint("""You see a witch meditating in the center of the room, She has a golden key.""",1)
-    fprint("""KILL THE WITCH, to get access to the golden key.""",1)
-    fprint("""Press 'F' to attack Dorothi witch""",1)
+    print_slow("""You have entered the gallery.""",)
+    print_slow("""You see a bunch of paintings on the wall.""",)
+    print_slow("""You see a witch meditating in the center of the room, She is holding a golden key.""",)
+    print_slow("""KILL THE WITCH, to get access to the golden key.""",)
+    print_slow("""Press 'e' to attack Dorothy witch, or to go back to the Great Hall type 'south.'""",)
+    
     dorothy_attack = ([True, False])
    
     while True:
@@ -174,16 +177,20 @@ def gallery():
             entrance()
         elif choice == "quit":
             quit_game()
-        elif choice == "F":
-            fprint("You attacked Dorothy!")
+        elif choice == "e":
+            print_slow("You attacked Dorothy!")
             if knife == True:
-                fprint("You killed Dorothy witch!")
-                fprint("Press 'k' to pick up the golden key")
+                print_slow("You are Fighting with a knife!")
+                print_slow("..........")
+                print_slow("Hoohoo!")
+                print_slow("You killed Dorothy witch!")
+                print_slow("Press 'k' to pick up the golden key.")
+                print_slow("""You can go 'south', 'east', or 'west'.""")
                 while True:
                     choice = input("\n>")
                     if choice == "k":
-                        fprint("You picked up the golden key")
-                        fprint("You can now go to the throne room to get the treasure!")
+                        print_slow("You picked up the golden key.")
+                        print_slow
                         key = True
                         dorothy_killed = True
                         gallery_no_witch()
@@ -191,13 +198,16 @@ def gallery():
                     elif choice == "quit":
                         quit_game()
                     else:
-                        fprint("Don't know what you mean.")
+                        print_slow("Don't know what you mean.")
             elif knife == False:
-                fprint("You missed Dorothy witch!")
-                fprint("Dorothy witch killed you!")
-                fprint("You died!")
-                fprint("GAME OVER!")
-                fprint("Press 'r' to restart the game")
+                print_slow("You are Fighting with your bare hands!")
+                print_slow("..........",0.3)
+                print_slow("You can't kill Dorothy witch she is too powerful!")
+                print_slow("You missed Dorothy witch!")
+                print_slow("Dorothy witch killed you!",0.3)
+                print_slow("You died!",0.3)
+                print_slow("GAME OVER!",0.3)
+                print_slow("Press 'r' to restart the game")
                 while True:
                     choice = input("\n>")
                     if choice == "r":
@@ -206,18 +216,16 @@ def gallery():
                     elif choice == "quit":
                         quit_game()
                     else:
-                        fprint("Don't know what you mean.")
+                        print_slow("Don't know what you mean.")
         else:
-            fprint("Don't know what you mean.")    
+            print_slow("Don't know what you mean.")    
             
 def gallery_no_witch():
     global knife
     global key
- 
-    fprint("""The gallery is now free 
-            You are looking throught the paintings
-            You can go west east or south""",1)
-   
+    print_slow("""You are in the Gallery.""",)
+    print_slow("""You see a bunch of paintings on the wall.""",)
+    print_slow("""You can go 'south', 'east', or 'west'.""")
     while True:
         choice = input("\n>")
         if choice == "west":
@@ -229,35 +237,36 @@ def gallery_no_witch():
         elif choice == "quit":
             quit_game()
         else:
-            fprint("Don't know what you mean.")
+            print_slow("Don't know what you mean.")
 
         
 
 def scullery():
     global knife
-    fprint("""You have entered the scullery.""",1)
-    fprint("""You see a bunch of old food. It's a mess here in the scullery!
-              You see dirty broken dishes and rusty knife lying around. 
-              You can go south.""")
-    fprint("""You see knife laying on the floor.
-            Press 'k' to pick it up""",1)
+    print_slow("""You have entered the scullery.""",)
+    print_slow("""It's a mess here in the scullery!""")
+    print_slow("""You see dirty broken dishes.""")
+    print_slow("""You see a bunch of kitchen utensils.""",)
+    print_slow("""You see a knife on the table.""",)
+    print_slow("""Press 'e' to pick up the knife.""",)
+    print_slow("""You can go 'south'.""")
     while True:
         choice = input("\n>")
         if choice == "south":
             arcade()
-        elif choice == "k":
-            fprint("You picked up the knife")
+        elif choice == "e":
+            print_slow("You picked up the knife")
             knife = True
-            fprint("You can now go to the gallery to kill dorothy witch!")
+            print_slow("You can now go to the gallery to kill dorothy witch!")
         elif choice == "quit":
             quit_game()
         else:
-            fprint("Don't know what you mean.")
+            print_slow("Don't know what you mean.")
 
 def throne_room():
-    fprint("""You have entered the throne room.""",1)
-    fprint("""You are in the throne room. You see the red velvet throne with a Golden key on it..
-            You can go west.""")
+    print_slow("""You have entered the throne room.""")
+    print_slow("""You are in the throne room. You see the red velvet throne.""")
+    print_slow("""You can go 'west'.""")
     while True:
         choice = input("\n>")
         if choice == "west" and dorothy_killed == False:
@@ -267,12 +276,12 @@ def throne_room():
         elif choice == "quit":
             quit_game()
         else:
-            fprint("Don't know what you mean.")
+            print_slow("Don't know what you mean.")
 
 def dungeon():
-    fprint("""You have entered the dungeon.""",1)
-    fprint("""This is the prison cell. It's pitch dark in here. Turn on the flashlight. 
-              You can go south, or north""")
+    print_slow("""You have entered the dungeon.""")
+    print_slow("""You see a bunch of cages and chains.""")
+    print_slow("""You can go 'north', or 'south'.""")
     while True:
         choice = input("\n>")
         if choice == "south":
@@ -282,11 +291,13 @@ def dungeon():
         elif choice == "quit":
             quit_game()
         else:
-            fprint("Don't know what you mean.")
+            print_slow("Don't know what you mean.")
 
 def arena():
-    print_slow("""You have entered the arena""",0.1)
-    fprint("You have entered the Arena. You found a flashlight, would you like to pick it up? You can go east")
+    print_slow("""You have entered the arena""")
+    print_slow("You have entered the Arena.")
+    print_slow("You see a bunch of weapons on the ground.")
+    print_slow("You can go 'east'.")
     while True:
         choice = input("\n>")
         if choice == "east" and dorothy_killed == False:
@@ -297,40 +308,46 @@ def arena():
         elif choice == "quit":
             quit_game()
         else:
-            fprint("I don't understand that. Try again.")
+            print_slow("I don't understand that. Try again.")
 
 
 def undercroft():
     global key
-    fprint("""The Undercroft is locked. Unlock it with the golden key.
-              You can go north.""")
+    print_slow("""The Undercroft is locked.""")
+    print_slow("""You need the golden key to unlock the door.""")
+    print_slow("""You can go 'north'.""")
     if key == False:
-        fprint("You do not have the key to unlock the door")
+        print_slow("You do not have the key to unlock the door")
         while True:
             choice = input("\n>")
             if choice == "north":
                 dungeon()
     elif key == True:
-        fprint("Use the golden key to unlock the undercroft")
-        fprint("Press 'u' to unlock the undercroft")
+        print_slow("Use the golden key to unlock the undercroft")
+        print_slow("Press 'u' to unlock the undercroft")
         while True:
             choice = input("\n>")
             if choice == "u":
-                fprint("You unlocked the undercroft")
+                print_slow("..........",0.2)
+                print_slow("You unlocked the undercroft")
                 undercroft_unlocked()
             elif choice == "quit":
                 quit_game()
             else:
-                fprint("Don't know what you mean.")
+                print_slow("Don't know what you mean.")
     else:
-            fprint("Don't know what you mean.")
+            print_slow("Don't know what you mean.")
        
         
 def undercroft_unlocked():
     global key
-    fprint("You have unlocked the Undercroft and you see your puppy")
-    print_slow("YOU WON THE GAME",0.1)
-    print("Press any key to exit the game")
+    print_slow("You are in the Undercroft. and you see your puppy")
+    print_slow("You see your puppy tied to a chair")
+    print_slow("You untied your puppy")
+    print_slow(".......",0.2)
+    print_slow("Took your puppy and went outside the mysterious palace")
+    print_slow("YOU WON THE GAME",0.5)
+    print_slow("Press any key to exit the game")
     while True:
         choice = input("\n>")
         quit_game()
@@ -339,12 +356,10 @@ def undercroft_unlocked():
 
 
 def chamber():
-    fprint("You entered the chamber")
-    fprint("""You are in the king and queen’s restroom. 
-              You see a large canopy bed with ivory curtains.
-              You look around the room only to find a mini key. 
-              would you like to pick it?
-              You can go west""")
+    print_slow("You entered the chamber")
+    print_slow("You are in the king and queen’s bedroom.")
+    print_slow("You see a large canopy bed with ivory curtains.")
+    print_slow("You can go 'west'.")
     while True:
         choice = input("\n>")
         if choice == "west":
