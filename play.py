@@ -3,12 +3,13 @@ import os
 import time
 import random
 
-def print_slow(str, delay =0.01):
+def print_slow(str, delay =0.01, delay2 = 1):
     for letter in str:
         sys.stdout.write(letter)
         sys.stdout.flush()
         time.sleep(delay)
     print("\n")
+    time.sleep(delay2)
 
 def reset_console():
     print("\n")
@@ -22,6 +23,12 @@ def sprint(str, delay =0.1):
     print(str)
     time.sleep(delay)
 
+    player = {
+        "name": "Player",
+        "items": [],
+        "location": "start"
+    }
+
 """ This is the main room of the game. It is where the player will 
     start the game. It is also where the player will be able to 
     access all other rooms in the game."""
@@ -33,28 +40,40 @@ dorothy_killed = False
 
 
 def print_welcome():
-    
-    fprint("""You took your puppy to the park, you let the puppy lose to run around the park and play. You saw you old friend in
-     the park while you two were talking you see you puppy run away from the park, you saw the puppy running into a misterious palace
-     you awent with her you are now standing in front of the door in the palace Do you want to go in and find the puppy?
-     *) Type 'yes' to go enter the palace.
-     *) Type 'no' to stay there.
-     *) Type 'quit' to exit the game.""",)
+    print_slow("""
+    HI!
+    Let's go on an adventure!""",0.02)
+    print_slow("""
+    On a sunny day, you took your puppy to the park.""")
+    print_slow("""
+    You were playing fetch with your puppy, suddently your puppy ran into the distance.""")
+    print_slow("""
+    You chased your puppy, puppy ran into a mysterious palace in the distance. """)
+    print_slow("""
+                You ran to the mysterious palace, 
+                You are standing in front of the door. 
+    *) Type 'yes' to enter the palace.
+    *) Type 'no' to stay there.
+    *) Type 'quit' to exit the game. """)
     while True:
         choice = input("\n>")
         if choice == "yes":
+            print_slow("You pushed the jammed half opened door.")
+            print_slow("You stumblled into the Great Hall.",)
             entrance()
         elif choice == "no":
-            fprint("You stay there wondering where the puppy went :(")
+            print_slow("You stay there wondering where the puppy went :(")
         elif choice == "quit":
             quit_game()
         else:
             fprint("Don't know what you mean.")
 
 def entrance():
-    fprint("""You are in the great hall of the mystery palace. All you see is a crystal chandlier above you and a dirty backpack on the floor. 
-    You can go north, south, east, or west.
-    Where would you like to go?""")
+    print_slow("""You are now in the Great Hall.""")
+    print_slow("""All you see is a wide open empty hall with a big crystal chandelier hanging from the ceiling.""")
+    print_slow("""You can go 'north', 'south', 'east', or 'west'.""")
+    print_slow("""Where do you want to go?""")
+    
     
     while True:
         choice = input("\n>")
@@ -63,7 +82,9 @@ def entrance():
         elif choice =="north" and dorothy_killed == True:
             gallery_no_witch()
         elif choice == "south":
-            fprint("""You came back outside of the palace, Would you like to go back in the palace or exit the game?
+            print_slow("You came back outside the palace.")
+            print_slow("Would you like to go back in the palace or exit the game?")
+            print_slow("""
             *) Type 'yes' to go back in the palace.
             *) Type 'no' to exit the game.""")
             while True:
@@ -80,6 +101,8 @@ def entrance():
             arcade()
         elif choice == "quit":
             quit_game()
+        else:
+            fprint("Don't know what you mean.")
 
 
 def play_room():
@@ -102,7 +125,7 @@ def play_room():
             'To be the powerful witch of the world, Dorothy needs to drink a puppy’s blood.
             Lock puppy in the magic bound undercroft until sunset' """)
         else:
-            fprint(f"Sorry, I didn't understand that. Please try again.")
+            fprint("Don't know what you mean.")
 
     
 def arcade():
@@ -126,6 +149,8 @@ def arcade():
             entrance()
         elif choice == "quit":
             quit_game()
+        else:
+            fprint("Don't know what you mean.")
 
 def gallery():
     global knife
@@ -182,7 +207,8 @@ def gallery():
                         quit_game()
                     else:
                         fprint("Don't know what you mean.")
-            
+        else:
+            fprint("Don't know what you mean.")    
             
 def gallery_no_witch():
     global knife
@@ -202,6 +228,8 @@ def gallery_no_witch():
             entrance()
         elif choice == "quit":
             quit_game()
+        else:
+            fprint("Don't know what you mean.")
 
         
 
@@ -221,11 +249,10 @@ def scullery():
             fprint("You picked up the knife")
             knife = True
             fprint("You can now go to the gallery to kill dorothy witch!")
-            
-        
-        
         elif choice == "quit":
             quit_game()
+        else:
+            fprint("Don't know what you mean.")
 
 def throne_room():
     fprint("""You have entered the throne room.""",1)
@@ -239,6 +266,8 @@ def throne_room():
             gallery_no_witch()
         elif choice == "quit":
             quit_game()
+        else:
+            fprint("Don't know what you mean.")
 
 def dungeon():
     fprint("""You have entered the dungeon.""",1)
@@ -252,6 +281,8 @@ def dungeon():
             arcade()
         elif choice == "quit":
             quit_game()
+        else:
+            fprint("Don't know what you mean.")
 
 def arena():
     print_slow("""You have entered the arena""",0.1)
@@ -291,6 +322,8 @@ def undercroft():
                 quit_game()
             else:
                 fprint("Don't know what you mean.")
+    else:
+            fprint("Don't know what you mean.")
        
         
 def undercroft_unlocked():
@@ -320,7 +353,7 @@ def chamber():
         elif choice == "quit":
             quit_game()
         else:
-            fprint("I don't understand that. Try again.")
+            fprint("Don't know what you mean.")
 
 def quit_game():
     fprint("Thank you for playing",0.5)
