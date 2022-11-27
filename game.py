@@ -19,6 +19,8 @@ def fprint(str, delay =0.1):
     print("\n"+str)
     time.sleep(delay)
 
+player = {"location":"", "items":[]}
+
 """This is the initial state of items in the game"""
 knife = False
 key = False
@@ -53,7 +55,6 @@ def print_welcome():
             quit_game()
         else:
             fprint("Don't know what you mean.")
-
 
 """This function is the enterence i.e the Great Hall"""
 def entrance():
@@ -92,7 +93,6 @@ def entrance():
         else:
             fprint("Don't know what you mean.")
 
-
 def play_room():
     print_slow("""You have entered the play room.""")
     print_slow("""This is the royal game room.""") 
@@ -113,8 +113,7 @@ def play_room():
             Lock puppy in the magic bound undercroft until sunset' """)
         else:
             fprint("Don't know what you mean.")
-
-    
+ 
 def arcade():
     print_slow("""You have entered the arcade room.""")
     print_slow("""You see a bunch of arcade games.""")
@@ -168,45 +167,52 @@ def gallery():
         elif choice == "e":
             print_slow("You attacked Dorothy!")
             if knife == True:
-                print_slow("You are Fighting with a knife!")
-                print_slow("..........")
-                print_slow("Hoohoo!")
-                print_slow("You killed Dorothy witch!")
-                print_slow("Press 'k' to pick up the golden key.")
-                print_slow("""You can go 'south', 'east', or 'west'.""")
-                while True:
-                    choice = input("\n>")
-                    if choice == "k":
-                        print_slow("You picked up the golden key.")
-                        print_slow
-                        key = True
-                        dorothy_killed = True
-                        gallery_no_witch()
-                        
-                    elif choice == "quit":
-                        quit_game()
-                    else:
-                        print_slow("Don't know what you mean.")
+                dorothy_attack_with_knife()
             elif knife == False:
-                print_slow("You are Fighting with your bare hands!")
-                print_slow("..........",0.3)
-                print_slow("You can't kill Dorothy witch she is too powerful!")
-                print_slow("You missed Dorothy witch!")
-                print_slow("Dorothy witch killed you!",0.3)
-                print_slow("You died!",0.3)
-                print_slow("GAME OVER!",0.3)
-                print_slow("Press 'r' to restart the game")
-                while True:
-                    choice = input("\n>")
-                    if choice == "r":
-                        reset_console()
-                        print_welcome()
-                    elif choice == "quit":
-                        quit_game()
-                    else:
-                        print_slow("Don't know what you mean.")
+                dorothy_attack_with_no_knife()
+                
         else:
-            print_slow("Don't know what you mean.")    
+            print_slow("Don't know what you mean.")  
+
+def dorothy_attack_with_knife():
+    print_slow("You are Fighting with a knife!")
+    print_slow("..........")
+    print_slow("Hoohoo!")
+    print_slow("You killed Dorothy witch!")
+    print_slow("Press 'k' to pick up the golden key.")
+    print_slow("""You can go 'south', 'east', or 'west'.""")
+    while True:
+        choice = input("\n>")
+        if choice == "k":
+            print_slow("You picked up the golden key.")
+            print_slow
+            key = True
+            dorothy_killed = True
+            gallery_no_witch()
+            
+        elif choice == "quit":
+            quit_game()
+        else:
+            print_slow("Don't know what you mean.")
+
+def dorothy_attack_with_no_knife():
+    print_slow("You are Fighting with your bare hands!")
+    print_slow("..........",0.3)
+    print_slow("You can't kill Dorothy witch she is too powerful!")
+    print_slow("You missed Dorothy witch!")
+    print_slow("Dorothy witch killed you!",0.3)
+    print_slow("You died!",0.3)
+    print_slow("GAME OVER!",0.3)
+    print_slow("Press 'r' to restart the game.")
+    while True:
+        choice = input("\n>")
+        if choice == "r":
+            reset_console()
+            print_welcome()
+        elif choice == "quit":
+            quit_game()
+        else:
+            print_slow("Don't know what you mean.")
             
 def gallery_no_witch():
     global knife
@@ -226,8 +232,6 @@ def gallery_no_witch():
             quit_game()
         else:
             print_slow("Don't know what you mean.")
-
-        
 
 def scullery():
     global knife
@@ -298,35 +302,39 @@ def arena():
         else:
             print_slow("I don't understand that. Try again.")
 
-
 def undercroft():
     global key
     print_slow("""The Undercroft is locked.""")
     print_slow("""You need the golden key to unlock the door.""")
     print_slow("""You can go 'north'.""")
     if key == False:
-        print_slow("You do not have the key to unlock the door")
-        while True:
-            choice = input("\n>")
-            if choice == "north":
-                dungeon()
+        no_key()
     elif key == True:
-        print_slow("Use the golden key to unlock the undercroft")
-        print_slow("Press 'u' to unlock the undercroft")
-        while True:
-            choice = input("\n>")
-            if choice == "u":
-                print_slow("..........",0.2)
-                print_slow("You unlocked the undercroft")
-                undercroft_unlocked()
-            elif choice == "quit":
-                quit_game()
-            else:
-                print_slow("Don't know what you mean.")
+        yes_key()
     else:
             print_slow("Don't know what you mean.")
+
+def no_key():
+    print_slow("You do not have the key to unlock the door")
+    while True:
+        choice = input("\n>")
+        if choice == "north":
+            dungeon()
        
-        
+def yes_key():
+    print_slow("Use the golden key to unlock the undercroft")
+    print_slow("Press 'u' to unlock the undercroft")
+    while True:
+        choice = input("\n>")
+        if choice == "u":
+            print_slow("..........",0.2)
+            print_slow("You unlocked the undercroft")
+            undercroft_unlocked()
+        elif choice == "quit":
+            quit_game()
+        else:
+                print_slow("Don't know what you mean.")
+
 def undercroft_unlocked():
     global key
     print_slow("You are in the Undercroft. and you see your puppy")
@@ -339,9 +347,6 @@ def undercroft_unlocked():
     while True:
         choice = input("\n>")
         quit_game()
-                
-
-
 
 def chamber():
     print_slow("You entered the chamber")
