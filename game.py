@@ -159,9 +159,10 @@ def gallery():
             text.print_slow("Don't know what you mean.")  
 
 def dorothy_attack_with_knife():
+    global key
     text.print_slow("You are Fighting with a knife!")
     text.print_slow("..........")
-    text.print_slow("Hoohoo!")
+    text.print_slow("Hoohoo!!")
     text.print_slow("You killed Dorothy witch!")
     text.print_slow("Press 'k' to pick up the golden key.")
     text.print_slow("""You can go 'south', 'east', or 'west'.""")
@@ -169,7 +170,6 @@ def dorothy_attack_with_knife():
         choice = input("\n>")
         if choice == "k":
             text.print_slow("You picked up the golden key.")
-            text.print_slow
             key = True
             dorothy_killed = True
             gallery_no_witch()
