@@ -32,7 +32,7 @@ def print_welcome():
         if choice == "yes":
             text.print_slow("You pushed the jammed half opened door.")
             text.print_slow("You stumblled into the Great Hall.",)
-            text.entrance()
+            entrance()
         elif choice == "no":
             text.print_slow("You stay there wondering where the puppy went :(")
         elif choice == "quit":
@@ -354,5 +354,3 @@ def quit_game():
 
 print_welcome()
 """https://i.kym-cdn.com/entries/icons/mobile/000/028/021/work.jpg"""
-
-
